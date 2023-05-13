@@ -29,7 +29,7 @@ a Kubernetes `Secret`,
 a cert-manager `Certificate`, or from
 the Kubernetes API server CA certificate (which `cainjector` itself uses to verify its TLS connection to the Kubernetes API server).
 
-If the *source* is a Kubernetes `Secret`, that resource MUST also have an `cert-manager.io/allow-direct-injection: "true"` annotation.
+If the *source* is a Kubernetes `Secret`, that resource *must* also have an `cert-manager.io/allow-direct-injection: "true"` annotation.
 The three *source* types are explained in more detail below.
 
 
