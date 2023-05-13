@@ -45,9 +45,9 @@ Here is an example of a `ValidatingWebhookConfiguration`
 configured with the annotation `cert-manager.io/inject-ca-from`,
 which will make `cainjector` populate the `caBundle` field using CA data from a cert-manager `Certificate`.
 
-NOTE: This example does not deploy a webhook server,
+NOTE: This example doesn't deploy a webhook server,
 it only deploys a partial webhook configuration,
-but it should be sufficient to help you understand what `cainjector` does:
+but it should be enough to help you understand what `cainjector` does:
 
 ```yaml
 apiVersion: v1
@@ -100,14 +100,14 @@ spec:
   selfSigned: {}
 ```
 
-You should find that the `caBundle` value is now identical to the CA value in the `Secret` for the `Certificate`:
+You should find that the `caBundle` value is the same as the CA value in the `Secret` for the `Certificate`:
 
 ```
 kubectl get validatingwebhookconfigurations.admissionregistration.k8s.io webhook1 -o yaml | grep caBundle
 kubectl -n example get secret webhook1-certificate  -o yaml | grep ca.crt
 ```
 
-And after a short time, the Kubernetes API server will read that new `caBundle` value and use it to verify a TLS connection to the webhook server.
+And after a short time, the Kubernetes API server reads that new `caBundle` value and use it to verify a TLS connection to the webhook server.
 
 ### Injecting CA data from a Secret resource
 
@@ -115,9 +115,9 @@ Here is another example of a `ValidatingWebhookConfiguration`
 this time configured with the annotation `cert-manager.io/inject-ca-from-secret`,
 which will make `cainjector` populate the `caBundle` field using CA data from a Kubernetes `Secret`.
 
-NOTE: This example does not deploy a webhook server,
+NOTE: This example doesn't deploy a webhook server,
 it only deploys a partial webhook configuration, 
-but it should be sufficient to help you understand what `cainjector` does:
+but it should be enough to help you understand what `cainjector` does:
 
 ```yaml
 apiVersion: v1
@@ -161,7 +161,7 @@ data:
   tls.crt: ""
 ```
 
-You should find that the `caBundle` value is now identical to the `ca.crt` value in the `Secret`:
+You should find that the `caBundle` value is the same as to the `ca.crt` value in the `Secret`:
 
 ```
 kubectl get validatingwebhookconfigurations.admissionregistration.k8s.io webhook2  -o yaml | grep caBundle
@@ -170,7 +170,7 @@ kubectl get validatingwebhookconfigurations.admissionregistration.k8s.io webhook
 And after a short time, the Kubernetes API server will read that new `caBundle` value and use it to verify a TLS connection to the webhook server.
 
 This `Secret` based injection mechanism can operate independently of the `Certificate` based mechanism described earlier.
-It will work without the cert-manager CRDs installed
+It works without the cert-manager CRDs installed
 and it will work if the cert-manager CRDs and associated webhook servers are not yet configured.
 
 NOTE: For this reason, cert-manager uses the `Secret` based injection mechanism to bootstrap its own webhook server.
@@ -182,9 +182,9 @@ Here is another example of a `ValidatingWebhookConfiguration`
 this time configured with the annotation `cert-manager.io/inject-apiserver-ca: "true"`,
 which will make `cainjector` populate the `caBundle` field using the same CA certificate used by the Kubernetes API server.
 
-NOTE: This example does not deploy a webhook server,
+NOTE: This example doesn't deploy a webhook server,
 it only deploys a partial webhook configuration,
-but it should be sufficient to help you understand what `cainjector` does:
+but it should be enough to help you understand what `cainjector` does:
 
 ```yaml
 apiVersion: v1

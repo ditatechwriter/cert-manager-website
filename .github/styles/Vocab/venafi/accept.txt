@@ -6,3 +6,5 @@ Vale
 Venafi
 MDITA
 Visual Studio Code
+CRDs
+APIs

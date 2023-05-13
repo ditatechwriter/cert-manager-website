@@ -12,6 +12,7 @@ exceptions:
   - ASP
   - CLI
   - CPU
+  - CRD
   - CSS
   - CSV
   - DEBUG
@@ -52,6 +53,7 @@ exceptions:
   - SSL
   - SVG
   - TBD
+  - TLS
   - TCP
   - TODO
   - URI
